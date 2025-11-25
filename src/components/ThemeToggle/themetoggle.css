@@ -1,0 +1,97 @@
+:root {
+  --toggle-bg: #e6eef7;
+  --toggle-knob: #ffffff;
+  --accent: #06b6d4;
+  --muted: rgba(11,18,32,0.06);
+}
+
+body.dark-theme {
+  --toggle-bg: #1f2937;
+  --toggle-knob: #0b1220;
+  --accent: #34d399;
+  --muted: rgba(255,255,255,0.06);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  width: 56px;
+  height: 32px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-md));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  padding: 4px;
+  transition: all var(--duration-normal);
+  box-shadow: var(--glass-shadow);
+  z-index: 9998;
+}
+
+.theme-toggle:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.theme-toggle .switch {
+  width: 44px;
+  height: 24px;
+  background: var(--toggle-bg);
+  border-radius: 999px;
+  padding: 3px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  transition: background 180ms ease;
+  box-shadow: 0 2px 6px rgba(2,6,23,0.15), inset 0 -1px 0 rgba(0,0,0,0.03);
+}
+
+.theme-toggle .knob {
+  width: 18px;
+  height: 18px;
+  background: var(--toggle-knob);
+  border-radius: 50%;
+  transform: translateX(0);
+  transition: transform 180ms cubic-bezier(.2,.9,.3,1);
+  box-shadow: 0 4px 10px rgba(2,6,23,0.18);
+}
+
+/* when .on class applied, move knob right and change accent */
+.theme-toggle.on .switch {
+  background: linear-gradient(90deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));
+}
+.theme-toggle.on .knob {
+  transform: translateX(20px);
+  background: var(--accent);
+}
+
+/* small labels/icons */
+.theme-toggle .label {
+  color: var(--muted);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* focus styles for keyboard accessibility */
+.theme-toggle:focus-within .switch,
+.theme-toggle:focus .switch {
+  outline: 2px solid rgba(3,105,161,0.14);
+  outline-offset: 3px;
+}
+
+.theme-toggle-thumb {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--duration-normal) var(--ease-spring);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+}
+
+.theme-toggle.light .theme-toggle-thumb {
+  transform: translateX(24px);
+}

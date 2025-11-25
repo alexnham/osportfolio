@@ -1,0 +1,177 @@
+:root {
+  --desktop-bg: var(--bg, #0b1220);
+  --panel: var(--panel, rgba(255,255,255,0.02));
+  --glass: rgba(255,255,255,0.03);
+  --accent: var(--accent, #06b6d4);
+  --muted: rgba(230,238,247,0.12);
+  --icon-size: 84px;
+  --icon-inner: 64px;
+  --label-color: #cfe8ff;
+  --label-muted: rgba(207,232,255,0.6);
+}
+
+/* Desktop container */
+.desktop {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+    linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-mid) 100%);
+  overflow: hidden;
+  padding: var(--spacing-xl);
+}
+
+/* Subtle animated grid */
+.desktop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(var(--glass-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+  animation: gridMove 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Icon container */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  max-width: 1400px;
+  width: 100%;
+}
+
+/* Icon wrapper */
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  user-select: none;
+  transition: transform var(--duration-normal) var(--ease-spring);
+}
+
+.desktop-icon:hover {
+  transform: translateY(-8px);
+}
+
+.desktop-icon:active {
+  transform: translateY(-4px) scale(0.98);
+}
+
+/* Icon visual container */
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-md));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-out);
+  box-shadow: var(--glass-shadow);
+}
+
+.icon-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity var(--duration-normal);
+}
+
+.desktop-icon:hover .icon-wrapper {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: var(--primary);
+  box-shadow: 
+    var(--glass-shadow),
+    0 0 30px rgba(59, 130, 246, 0.3);
+  transform: scale(1.1);
+}
+
+.desktop-icon:hover .icon-wrapper::before {
+  opacity: 1;
+}
+
+/* Icon image/emoji */
+.icon-image {
+  font-size: 40px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform var(--duration-normal) var(--ease-spring);
+}
+
+.desktop-icon:hover .icon-image {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Icon label */
+.icon-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color var(--duration-fast);
+}
+
+.desktop-icon:hover .icon-label {
+  color: var(--primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .desktop {
+    padding: var(--spacing-md);
+  }
+  
+  .icon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: var(--spacing-md);
+  }
+  
+  .icon-wrapper {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .icon-image {
+    font-size: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop::before {
+    animation: none;
+  }
+  
+  .desktop-icon,
+  .icon-visual,
+  .icon-visual::before {
+    transition: none;
+  }
+}

@@ -1,0 +1,258 @@
+.window {
+  position: fixed;
+  left: 100px;
+  top: 100px;
+  min-width: 400px;
+  min-height: 300px;
+  max-width: 95vw;
+  max-height: 92vh;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-lg)) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--duration-normal);
+  animation: windowAppear 0.3s var(--ease-out);
+  z-index: 100;
+}
+
+.window.resizing {
+  transition: none;
+  user-select: none;
+}
+
+.window.maximized {
+  border-radius: 0;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  transition: all 0.3s ease-out;
+}
+
+.window.minimized {
+  animation: minimizeWindow 0.3s ease-out forwards;
+}
+
+@keyframes windowAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes minimizeWindow {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8) translateY(100px);
+  }
+}
+
+.window.dragging {
+  box-shadow: 
+    var(--glass-shadow),
+    0 0 40px rgba(59, 130, 246, 0.3);
+  cursor: grabbing;
+  user-select: none;
+}
+
+.window-header {
+  height: 52px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-md);
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.window.dragging .window-header {
+  cursor: grabbing;
+}
+
+.window.maximized .window-header {
+  cursor: default;
+}
+
+.window-controls {
+  display: flex;
+  gap: 8px;
+  z-index: 1;
+}
+
+.window-control {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--duration-fast);
+}
+
+.window-control::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-full);
+  opacity: 0;
+  transition: opacity var(--duration-fast);
+}
+
+.window-control:hover::before {
+  opacity: 0.2;
+}
+
+.window-control.close {
+  background: #ff5f57;
+}
+
+.window-control.close::before {
+  background: #ff5f57;
+}
+
+.window-control.close:hover {
+  background: #ff3b30;
+}
+
+.window-control.minimize {
+  background: #ffbd2e;
+}
+
+.window-control.minimize::before {
+  background: #ffbd2e;
+}
+
+.window-control.minimize:hover {
+  background: #ff9500;
+}
+
+.window-control.maximize {
+  background: #28c840;
+}
+
+.window-control.maximize::before {
+  background: #28c840;
+}
+
+.window-control.maximize:hover {
+  background: #00c700;
+}
+
+.window-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.window-content {
+  flex: 1;
+  overflow: hidden;
+  padding: var(--spacing-lg);
+  background: var(--bg-mid);
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.window-content.no-padding {
+  padding: 0;
+}
+
+/* Resize Handles */
+.resize-handle {
+  position: absolute;
+  z-index: 10;
+}
+
+.resize-handle:hover {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+.resize-e, .resize-w {
+  width: 8px;
+  top: 0;
+  bottom: 0;
+  cursor: ew-resize;
+}
+
+.resize-e {
+  right: 0;
+}
+
+.resize-w {
+  left: 0;
+}
+
+.resize-n, .resize-s {
+  height: 8px;
+  left: 0;
+  right: 0;
+  cursor: ns-resize;
+}
+
+.resize-n {
+  top: 0;
+}
+
+.resize-s {
+  bottom: 0;
+}
+
+.resize-se, .resize-sw, .resize-ne, .resize-nw {
+  width: 16px;
+  height: 16px;
+}
+
+.resize-se {
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+}
+
+.resize-sw {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+}
+
+.resize-ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.resize-nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+@media (max-width: 768px) {
+  .window {
+    width: 90vw !important;
+    height: 70vh !important;
+    left: 5vw !important;
+    top: 10vh !important;
+  }
+  
+  .resize-handle {
+    display: none;
+  }
+}

@@ -1,0 +1,118 @@
+.terminal-window {
+  width: 700px;
+  height: 450px;
+  max-width: 90vw;
+  max-height: 80vh;
+}
+
+.terminal {
+  width: 100%;
+  height: 100%;
+  background: #0d1117;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #c9d1d9;
+  display: flex;
+  flex-direction: column;
+  cursor: text;
+  overflow: hidden;
+}
+
+.terminal-output {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+  padding-bottom: 8px;
+  min-height: 0;
+}
+
+.terminal-line {
+  margin-bottom: 4px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.terminal-command {
+  color: #58a6ff;
+  font-weight: 500;
+}
+
+.terminal-error {
+  color: #f85149;
+}
+
+.terminal-success {
+  color: #3fb950;
+}
+
+.terminal-input-form {
+  padding: 0 16px 16px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  background: #0d1117;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.terminal-prompt {
+  color: #3fb950;
+  font-weight: 600;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #c9d1d9;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  caret-color: #58a6ff;
+}
+
+.terminal-input::selection {
+  background: rgba(88, 166, 255, 0.3);
+}
+
+/* Scrollbar styling */
+.terminal-output::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.terminal-output::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Animation for new lines */
+.terminal-line {
+  animation: fadeIn 0.1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
