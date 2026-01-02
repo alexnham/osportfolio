@@ -30,7 +30,7 @@ const Resume: React.FC = () => {
         {
             title: "Software Engineer Intern",
             company: "Celestica",
-            period: "May 2025 - Sept 2026", // Adjusted to reflect the timeline context
+            period: "May 2025 - Sept 2026", 
             description: [
                 "Developed a multithreaded monitoring service overseeing 10+ distributed applications, improving system reliability and reducing downtime through proactive alerting and diagnostics ",
                 "Led the migration of legacy Oracle SQL databases to Microsoft SQL Server, redesigning schemas and optimizing complex queries to improve performance, ensure data integrity, and enhance compatibility with .NET applications ",
@@ -70,7 +70,7 @@ const Resume: React.FC = () => {
 
     const education = [
         {
-            degree: "B.Sc. in Computer Science, Minor in Software Engineering",
+            degree: "B.Sc. in Computer Science",
             school: "The University Of Western Ontario",
             period: "Expected Graduation May 2025",
             details: "GPA 3.85"
@@ -80,7 +80,7 @@ const Resume: React.FC = () => {
     const skills = [
         {
             category: "Languages",
-            items: ["Java ", "Python ", "C ", "C++ ", "C# ", "JavaScript ", "TypeScript ", "SQL ", "Bash ", "Rust "]
+            items: ["Java ", "Python ", "C ", "C++ ", "C# ", "JavaScript ", "TypeScript ", "Bash ", "Rust "]
         },
         {
             category: "Frameworks & Libraries",
