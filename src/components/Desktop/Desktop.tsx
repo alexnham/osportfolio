@@ -4,6 +4,7 @@ import Window from '../Window/Window';
 import Terminal from '../Terminal/Terminal';
 import Resume from '../Resume/Resume';
 import Contact from '../Contact/Contact';
+import About from '../About/About';
 
 interface AppIcon {
     id: string;
@@ -63,14 +64,7 @@ const Desktop: React.FC<DesktopProps> = ({ openWindows, onOpenWindow, onCloseWin
             case 'contact':
                 return <Contact />;
             case 'about':
-                return (
-                    <div style={{ padding: '20px' }}>
-                        <h2>👤 About Me</h2>
-                        <div style={{ marginTop: '20px' }}>
-                            <p>Hi! I'm Alex...</p>
-                        </div>
-                    </div>
-                );
+                return <About />;
             case 'terminal':
                 return <Terminal />;
             default:
