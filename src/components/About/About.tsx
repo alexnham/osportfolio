@@ -3,53 +3,22 @@ import './About.css';
 
 const About: React.FC = () => {
     return (
-        <div className="contact-container">
-            <div className="contact-header">
-                <h1 className="contact-title">📞 Get In Touch</h1>
-            </div>
-
-            <div className="contact-cards">
-                {/* Email */}
-                <a 
-                    href="mailto:alexnham11@gmail.com"
-                    className="contact-card"
-                >
-                    <div className="contact-icon">📧</div>
-                    <div className="contact-info">
-                        <div className="contact-label">Email</div>
-                        <div className="contact-value">alexnham11@gmail.com</div>
-                    </div>
-                </a>
-
-                {/* LinkedIn */}
-                <a 
-                    href="https://linkedin.com/in/alex-nham"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="contact-card"
-                >
-                    <div className="contact-icon">💼</div>
-                    <div className="contact-info">
-                        <div className="contact-label">LinkedIn</div>
-                        <div className="contact-value">linkedin.com/in/alex-nham</div>
-                    </div>
-                </a>
-
-                {/* GitHub */}
-                <a 
-                    href="https://github.com/alexnham"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="contact-card"
-                >
-                    <div className="contact-icon">🐙</div>
-                    <div className="contact-info">
-                        <div className="contact-label">GitHub</div>
-                        <div className="contact-value">github.com/alexnham</div>
-                    </div>
-                </a>
-
-            </div>
+        <div className="about-app">
+            <h1>👤 About Me</h1>
+            <p>Hi! I'm Alex, a passionate developer.</p>
+            <img src="path_to_your_image.jpg" alt="About Me" />
+            <h2>Development</h2>
+            <ul>
+                <li>Web Development</li>
+                <li>Open Source Contribution</li>
+                <li>Gaming</li>
+            </ul>
+            <h2>Outside of Development</h2>
+            <ul>
+                <li>Fitness</li>
+                <li>Snowboarding</li>
+                <li>Traveling</li>
+            </ul>
         </div>
     );
 };
