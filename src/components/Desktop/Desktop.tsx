@@ -5,6 +5,7 @@ import Terminal from '../Terminal/Terminal';
 import Resume from '../Resume/Resume';
 import Contact from '../Contact/Contact';
 import About from '../About/About';
+import Projects from '../Projects/Projects';
 
 interface AppIcon {
     id: string;
@@ -32,15 +33,7 @@ const Desktop: React.FC<DesktopProps> = ({ openWindows, onOpenWindow, onCloseWin
     const getWindowContent = (iconId: string, iconName: string) => {
         switch (iconId) {
             case 'projects':
-                return (
-                    <div style={{ padding: '20px' }}>
-                        <h2>💼 My Projects</h2>
-                        <div style={{ marginTop: '20px' }}>
-                            <h3>Featured Work</h3>
-                            <p>Coming soon...</p>
-                        </div>
-                    </div>
-                );
+                return <Projects />;
             case 'resume':
                 return <Resume />;
             case 'playground':

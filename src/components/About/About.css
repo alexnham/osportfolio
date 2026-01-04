@@ -1,0 +1,48 @@
+.about-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 16px 0;
+    border-bottom: 1px solid var(--border-color, #e0e0e0);
+    padding-bottom: 8px;
+}
+
+.tab-button {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary, #666);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+    background: var(--hover-bg, rgba(0, 0, 0, 0.05));
+}
+
+.tab-button.active {
+    background: var(--active-bg, rgba(0, 122, 255, 0.1));
+    color: var(--accent-color, #007aff);
+}
+
+.tab-content {
+    padding: 8px 0;
+}
+
+.career-section,
+.outside-section {
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
