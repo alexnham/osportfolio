@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './bootanimation.css';
+import { ZapIcon } from '../Icons/Icons';
 
 interface BootAnimationProps {
   onComplete: () => void;
@@ -7,7 +8,6 @@ interface BootAnimationProps {
 
 const BootAnimation: React.FC<BootAnimationProps> = ({ onComplete }) => {
   useEffect(() => {
-
     const timer = setTimeout(() => {
       onComplete();
       localStorage.setItem('hasBooted', 'true');
@@ -20,7 +20,7 @@ const BootAnimation: React.FC<BootAnimationProps> = ({ onComplete }) => {
     <div className="boot-screen">
       <div className="boot-content">
         <div className="boot-logo">
-          <div className="boot-icon"></div>
+          <div className="boot-icon"><ZapIcon size={24} /></div>
           <h1 className="boot-title">AlexOS</h1>
         </div>
         <p className="boot-message">Starting system...</p>

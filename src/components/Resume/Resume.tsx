@@ -116,8 +116,7 @@ const Resume: React.FC = () => {
                         target="_blank"
                         className="resume-button"
                     >
-                        <span>⬇️</span>
-                        View Resume
+                        View PDF
                     </a>
                 </div>
             </div>
@@ -128,21 +127,18 @@ const Resume: React.FC = () => {
                     className={`tab-button ${activeTab === 'experience' ? 'active' : ''}`}
                     onClick={() => setActiveTab('experience')}
                 >
-                    <span className="tab-icon">💼</span>
                     Experience
                 </button>
                 <button
                     className={`tab-button ${activeTab === 'education' ? 'active' : ''}`}
                     onClick={() => setActiveTab('education')}
                 >
-                    <span className="tab-icon">🎓</span>
                     Education
                 </button>
                 <button
                     className={`tab-button ${activeTab === 'skills' ? 'active' : ''}`}
                     onClick={() => setActiveTab('skills')}
                 >
-                    <span className="tab-icon">🛠️</span>
                     Skills
                 </button>
             </div>

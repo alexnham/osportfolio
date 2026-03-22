@@ -58,11 +58,12 @@
 }
 
 .window.dragging {
-  box-shadow: 
+  box-shadow:
     var(--glass-shadow),
     0 0 40px rgba(59, 130, 246, 0.3);
   cursor: grabbing;
   user-select: none;
+  touch-action: none;
 }
 
 .window-header {
@@ -76,6 +77,7 @@
   user-select: none;
   flex-shrink: 0;
   position: relative;
+  touch-action: none;
 }
 
 .window.dragging .window-header {
@@ -246,13 +248,53 @@
 
 @media (max-width: 768px) {
   .window {
-    width: 90vw !important;
-    height: 70vh !important;
-    left: 5vw !important;
-    top: 10vh !important;
+    width: calc(100vw - 16px) !important;
+    min-width: unset !important;
+    height: calc(100dvh - 100px) !important;
+    min-height: 300px !important;
+    left: 8px !important;
+    top: 8px !important;
+    max-width: none !important;
+    max-height: none !important;
+  }
+  
+  .window-header {
+    height: 48px;
+    padding: 0 12px;
+  }
+  
+  .window-control {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .window-control::before {
+    inset: -8px;
+  }
+  
+  .window-title {
+    font-size: 13px;
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .window-content {
+    padding: var(--spacing-md);
   }
   
   .resize-handle {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .window {
+    width: 100vw !important;
+    height: calc(100dvh - 80px) !important;
+    left: 0 !important;
+    top: 0 !important;
+    border-radius: 0;
   }
 }

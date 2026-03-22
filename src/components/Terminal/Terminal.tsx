@@ -50,43 +50,56 @@ const Terminal: React.FC = () => {
           { type: 'output', content: '  projects      - Show my projects' },
           { type: 'output', content: '  contact       - Get contact information' },
           { type: 'output', content: '  clear         - Clear the terminal' },
-          { type: 'output', content: '  sudo hire me  - Easter egg 🥚' },
+          { type: 'output', content: '  sudo hire me  - Easter egg' },
         ];
         break;
 
       case 'about':
         response = [
-          { type: 'output', content: 'Alex - Full Stack Developer' },
-          { type: 'output', content: 'Passionate about building elegant solutions.' },
-          { type: 'output', content: 'Location: Toronto 🍁' },
+          { type: 'output', content: "Hi, I'm Alex — a Computer Science student at Western University" },
+          { type: 'output', content: "with a passion for building things that matter." },
+          { type: 'output', content: '' },
+          { type: 'output', content: 'Focus areas: Full-Stack, HealthTech, IoT, AI & ML, Blockchain,' },
+          { type: 'output', content: '  Automation & DevOps, Game Development' },
+          { type: 'output', content: '' },
+          { type: 'output', content: 'Beyond the screen: Fitness, Snowboarding, Traveling' },
         ];
         break;
 
       case 'skills':
         response = [
-          { type: 'output', content: 'Technical Skills:' },
-          { type: 'success', content: '✓ React, TypeScript, Node.js' },
-          { type: 'success', content: '✓ Python, Java, C++' },
-          { type: 'success', content: '✓ AWS, Azure, Docker' },
-          { type: 'success', content: '✓ SQL, MongoDB, Redis' },
+          { type: 'output', content: 'Languages:' },
+          { type: 'success', content: '  Java, Python, C, C++, C#, JavaScript, TypeScript, Bash, Rust' },
+          { type: 'output', content: '' },
+          { type: 'output', content: 'Frameworks & Libraries:' },
+          { type: 'success', content: '  React, Node.js, Express, Flask, Django, .NET, React Native, Flutter, Tailwind' },
+          { type: 'output', content: '' },
+          { type: 'output', content: 'Databases:' },
+          { type: 'success', content: '  MySQL, MongoDB, PostgreSQL, Microsoft SQL Server' },
+          { type: 'output', content: '' },
+          { type: 'output', content: 'Cloud & DevOps:' },
+          { type: 'success', content: '  Azure, Docker, GitHub Actions, CI/CD, REST APIs, Postman, Nginx' },
+          { type: 'output', content: '' },
+          { type: 'output', content: 'Tools & Additional:' },
+          { type: 'success', content: '  Git, VS Code, Figma, Jira, Agile, Automation, Team Collaboration' },
         ];
         break;
 
       case 'projects':
         response = [
           { type: 'output', content: 'Featured Projects:' },
-          { type: 'output', content: '1. idk' },
-          { type: 'output', content: '2. idk' },
-          { type: 'output', content: '3. idk' },
+          { type: 'output', content: '1. Summarizer - AI-powered text summarization tool [AI, NLP]' },
+          { type: 'output', content: '2. ProjManage - Project tracking and display [Full Stack]' },
+          { type: 'output', content: '3. Elemental Flip - RPG dungeon crawler [Game]' },
         ];
         break;
 
       case 'contact':
         response = [
           { type: 'output', content: 'Contact Information:' },
-          { type: 'output', content: '📧 Email: alexnham11@gmail.com' },
-          { type: 'output', content: '💼 LinkedIn: linkedin.com/in/alex-nham' },
-          { type: 'output', content: '🐙 GitHub: github.com/alexnham' },
+          { type: 'output', content: 'Email: alexnham11@gmail.com' },
+          { type: 'output', content: 'LinkedIn: linkedin.com/in/alex-nham' },
+          { type: 'output', content: 'GitHub: github.com/alexnham' },
         ];
         break;
 
@@ -97,9 +110,9 @@ const Terminal: React.FC = () => {
       case 'sudo hire me':
       case 'sudo hire alex':
         response = [
-          { type: 'success', content: '🎉 Permission granted!' },
-          { type: 'success', content: '✨ Hiring process initiated...' },
-          { type: 'success', content: '📧 Please contact: alexnham11@gmail.com' },
+          { type: 'success', content: 'Permission granted!' },
+          { type: 'success', content: 'Hiring process initiated...' },
+          { type: 'success', content: 'Please contact: alexnham11@gmail.com' },
           { type: 'output', content: '' },
         ];
         break;
@@ -107,7 +120,7 @@ const Terminal: React.FC = () => {
       case 'ls':
       case 'dir':
         response = [
-          { type: 'output', content: 'projects/  resume.pdf  skills.txt  contact.info' },
+          { type: 'output', content: 'projects/  resume.pdf  skills.txt  contact.info  about.txt' },
         ];
         break;
 

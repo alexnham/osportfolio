@@ -1,5 +1,6 @@
 import React from 'react';
 import './themetoggle.css';
+import { MoonIcon, SunIcon } from '../Icons/Icons';
 
 interface ThemeToggleProps {
   isDark: boolean;
@@ -14,7 +15,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDark, onToggle }) => {
       aria-label="Toggle theme"
     >
       <div className="theme-toggle-thumb">
-        {isDark ? '🌙' : '☀️'}
+        {isDark ? <MoonIcon size={16} /> : <SunIcon size={16} />}
       </div>
     </button>
   );

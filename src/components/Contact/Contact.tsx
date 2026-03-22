@@ -1,11 +1,12 @@
 import React from 'react';
 import './Contact.css';
+import { MailIcon, LinkedinIcon, GithubIcon } from '../Icons/Icons';
 
 const Contact: React.FC = () => {
     return (
         <div className="contact-container">
             <div className="contact-header">
-                <h1 className="contact-title">📞 Get In Touch</h1>
+                <h1 className="contact-title">Get In Touch</h1>
             </div>
 
             <div className="contact-cards">
@@ -14,7 +15,7 @@ const Contact: React.FC = () => {
                     href="mailto:alexnham11@gmail.com"
                     className="contact-card"
                 >
-                    <div className="contact-icon">📧</div>
+                    <div className="contact-icon"><MailIcon size={40} /></div>
                     <div className="contact-info">
                         <div className="contact-label">Email</div>
                         <div className="contact-value">alexnham11@gmail.com</div>
@@ -28,7 +29,7 @@ const Contact: React.FC = () => {
                     rel="noopener noreferrer"
                     className="contact-card"
                 >
-                    <div className="contact-icon">💼</div>
+                    <div className="contact-icon"><LinkedinIcon size={40} /></div>
                     <div className="contact-info">
                         <div className="contact-label">LinkedIn</div>
                         <div className="contact-value">linkedin.com/in/alex-nham</div>
@@ -42,7 +43,7 @@ const Contact: React.FC = () => {
                     rel="noopener noreferrer"
                     className="contact-card"
                 >
-                    <div className="contact-icon">🐙</div>
+                    <div className="contact-icon"><GithubIcon size={40} /></div>
                     <div className="contact-info">
                         <div className="contact-label">GitHub</div>
                         <div className="contact-value">github.com/alexnham</div>

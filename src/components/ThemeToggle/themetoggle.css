@@ -1,21 +1,23 @@
-:root {
-  --toggle-bg: #e6eef7;
+/* Light mode (when body.light-theme) */
+body.light-theme {
+  --toggle-bg: #e5e5e5;
   --toggle-knob: #ffffff;
-  --accent: #06b6d4;
-  --muted: rgba(11,18,32,0.06);
+  --accent: #737373;
+  --muted: rgba(0,0,0,0.06);
 }
 
-body.dark-theme {
-  --toggle-bg: #1f2937;
-  --toggle-knob: #0b1220;
-  --accent: #34d399;
+/* Dark mode (default) */
+body:not(.light-theme) {
+  --toggle-bg: #404040;
+  --toggle-knob: #262626;
+  --accent: #a3a3a3;
   --muted: rgba(255,255,255,0.06);
 }
 
 .theme-toggle {
   position: fixed;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
+  top: max(var(--spacing-md), env(safe-area-inset-top, 0px));
+  right: max(var(--spacing-md), env(safe-area-inset-right, 0px));
   width: 56px;
   height: 32px;
   background: var(--glass-bg);
@@ -26,12 +28,12 @@ body.dark-theme {
   padding: 4px;
   transition: all var(--duration-normal);
   box-shadow: var(--glass-shadow);
-  z-index: 9998;
+  z-index: 10002;
 }
 
 .theme-toggle:hover {
-  background: var(--primary-light);
-  border-color: var(--primary);
+  background: var(--glass-bg);
+  border-color: var(--text-muted);
 }
 
 .theme-toggle .switch {
@@ -69,21 +71,25 @@ body.dark-theme {
 /* small labels/icons */
 .theme-toggle .label {
   color: var(--muted);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: var(--font-sans);
 }
 
 /* focus styles for keyboard accessibility */
 .theme-toggle:focus-within .switch,
 .theme-toggle:focus .switch {
-  outline: 2px solid rgba(3,105,161,0.14);
+  outline: 2px solid var(--text-muted);
   outline-offset: 3px;
 }
 
 .theme-toggle-thumb {
   width: 24px;
   height: 24px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
   border-radius: var(--radius-full);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,4 +100,26 @@ body.dark-theme {
 
 .theme-toggle.light .theme-toggle-thumb {
   transform: translateX(24px);
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    width: 52px;
+    height: 28px;
+    padding: 3px;
+  }
+  
+  .theme-toggle .switch {
+    width: 40px;
+    height: 22px;
+  }
+  
+  .theme-toggle .knob {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .theme-toggle.on .knob {
+    transform: translateX(18px);
+  }
 }

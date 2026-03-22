@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import './Window.css';
 import useDraggable from '../../hooks/useDraggable';
 
@@ -8,19 +8,58 @@ interface WindowProps {
   onClose?: () => void;
   noPadding?: boolean;
   size?: 'default' | 'large';
+  zIndex?: number;
 }
 
-const Window: React.FC<WindowProps> = ({ title, children, onClose, noPadding = false, size = 'default' }) => {
-  const { ref, isDragging } = useDraggable({ x: 100, y: 50 });
+const getInitialLayout = () => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const isSmall = typeof window !== 'undefined' && window.innerWidth <= 480;
+  if (isSmall) {
+    return { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight - 80 };
+  }
+  if (isMobile) {
+    const w = Math.min(window.innerWidth - 16, 700);
+    const h = Math.min(window.innerHeight - 100, 600);
+    return { x: (window.innerWidth - w) / 2, y: 8, width: w, height: h };
+  }
+  const w = 700;
+  const h = 500;
+  return {
+    x: Math.max(0, (window.innerWidth - w) / 2),
+    y: Math.max(0, (window.innerHeight - h) / 2),
+    width: w,
+    height: h,
+  };
+};
+
+const Window: React.FC<WindowProps> = ({ title, children, onClose, noPadding = false, size = 'default', zIndex = 100 }) => {
+  const initialLayout = useMemo(() => {
+    if (typeof window === 'undefined') {
+      return { x: 100, y: 100, width: 700, height: 500 };
+    }
+    const base = getInitialLayout();
+    if (size === 'large' && window.innerWidth > 768) {
+      const w = Math.min(1100, window.innerWidth - 40);
+      const h = Math.min(750, window.innerHeight - 40);
+      return {
+        x: (window.innerWidth - w) / 2,
+        y: (window.innerHeight - h) / 2,
+        width: w,
+        height: h,
+      };
+    }
+    return { x: base.x, y: base.y, width: base.width, height: base.height };
+  }, [size]);
+  const { ref, isDragging } = useDraggable({ x: initialLayout.x, y: initialLayout.y });
   const [dimensions, setDimensions] = useState({
-    width: size === 'large' ? 1100 : 700,
-    height: size === 'large' ? 750 : 500
+    width: initialLayout.width,
+    height: initialLayout.height
   });
   const [isResizing, setIsResizing] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const [savedDimensions, setSavedDimensions] = useState({ width: 700, height: 500 });
-  const [savedPosition, setSavedPosition] = useState({ x: 100, y: 50 });
+  const [savedDimensions, setSavedDimensions] = useState({ width: initialLayout.width, height: initialLayout.height });
+  const [savedPosition, setSavedPosition] = useState({ x: initialLayout.x, y: initialLayout.y });
 
   const handleMouseDown = (e: React.MouseEvent, direction: string) => {
     if (isMaximized) return;
@@ -98,7 +137,8 @@ const Window: React.FC<WindowProps> = ({ title, children, onClose, noPadding = f
       ref={ref}
       style={{
         width: `${dimensions.width}px`,
-        height: `${dimensions.height}px`
+        height: `${dimensions.height}px`,
+        zIndex
       }}
     >
       <div className="window-header">

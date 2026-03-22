@@ -1,6 +1,7 @@
 import React from 'react';
 import './Desktop.css';
 import Window from '../Window/Window';
+import PinnedPhotos from '../PinnedPhotos/PinnedPhotos';
 import Terminal from '../Terminal/Terminal';
 import Resume from '../Resume/Resume';
 import Contact from '../Contact/Contact';
@@ -10,7 +11,6 @@ import Projects from '../Projects/Projects';
 interface AppIcon {
     id: string;
     name: string;
-    emoji: string;
 }
 
 interface DesktopProps {
@@ -21,13 +21,13 @@ interface DesktopProps {
 
 const Desktop: React.FC<DesktopProps> = ({ openWindows, onOpenWindow, onCloseWindow }) => {
     const icons: AppIcon[] = [
-        { id: 'projects', name: 'Projects', emoji: '💼' },
-        { id: 'resume', name: 'Resume', emoji: '📄' },
-        { id: 'playground', name: 'Playground', emoji: '🎮' },
-        { id: 'labs', name: 'Labs', emoji: '🧪' },
-        { id: 'contact', name: 'Contact', emoji: '📞' },
-        { id: 'about', name: 'About', emoji: '👤' },
-        { id: 'terminal', name: 'Terminal', emoji: '⌨️' },
+        { id: 'projects', name: 'Projects' },
+        { id: 'resume', name: 'Resume' },
+        { id: 'playground', name: 'Playground' },
+        { id: 'labs', name: 'Labs' },
+        { id: 'contact', name: 'Contact' },
+        { id: 'about', name: 'About' },
+        { id: 'terminal', name: 'Terminal' },
     ];
 
     const getWindowContent = (iconId: string, iconName: string) => {
@@ -39,7 +39,7 @@ const Desktop: React.FC<DesktopProps> = ({ openWindows, onOpenWindow, onCloseWin
             case 'playground':
                 return (
                     <div style={{ padding: '20px' }}>
-                        <h2>🎮 Playground</h2>
+                        <h2>Playground</h2>
                         <div style={{ marginTop: '20px' }}>
                             <p>Interactive demos and experiments...</p>
                         </div>
@@ -48,7 +48,7 @@ const Desktop: React.FC<DesktopProps> = ({ openWindows, onOpenWindow, onCloseWin
             case 'labs':
                 return (
                     <div style={{ padding: '20px' }}>
-                        <h2>🧪 Labs</h2>
+                        <h2>Labs</h2>
                         <div style={{ marginTop: '20px' }}>
                             <p>Experimental projects...</p>
                         </div>
@@ -72,6 +72,7 @@ const Desktop: React.FC<DesktopProps> = ({ openWindows, onOpenWindow, onCloseWin
 
     return (
         <div className="desktop">
+            <PinnedPhotos />
             {openWindows.map((windowId, index) => {
                 const icon = icons.find(i => i.id === windowId);
                 if (!icon) return null;
@@ -80,9 +81,10 @@ const Desktop: React.FC<DesktopProps> = ({ openWindows, onOpenWindow, onCloseWin
                     <Window
                         key={windowId}
                         title={icon.name}
+                        zIndex={100 + index}
                         onClose={() => onCloseWindow(windowId)}
-                        noPadding={windowId === 'terminal' || windowId === 'resume' || windowId === 'contact'}
-                        size={windowId === 'resume' ? 'large' : 'default'}
+                        noPadding={windowId === 'terminal' || windowId === 'resume' || windowId === 'contact' || windowId === 'projects' || windowId === 'about'}
+                        size={windowId === 'resume' || windowId === 'projects' ? 'large' : 'default'}
                     >
                         {getWindowContent(windowId, icon.name)}
                     </Window>

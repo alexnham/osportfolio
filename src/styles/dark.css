@@ -1,35 +1,31 @@
+/* Dark theme - greyscale (used as base, light-theme overrides in index.css) */
 body {
-    background-color: #121212;
-    color: #ffffff;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
 }
 
 .desktop {
-    background-color: #1e1e1e;
+    /* Gradient set in Desktop.css */
 }
 
 .icon {
-    background-color: #2a2a2a;
-    border: 1px solid #444;
-    color: #ffffff;
+    background-color: var(--surface);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
 }
 
 .dock {
-    background-color: #1e1e1e;
-    border-top: 1px solid #444;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
 }
 
 .window {
-    background-color: #2a2a2a;
-    border: 2px solid #444;
-    color: #ffffff;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
 }
 
 .terminal {
-    background-color: #1e1e1e;
-    color: #00ff00;
-}
-
-.boot-animation {
-    background-color: #121212;
-    color: #ffffff;
+    background-color: var(--bg-dark);
+    color: var(--text-secondary);
 }

@@ -27,7 +27,7 @@ body.light-theme {
   box-shadow: 
     var(--glass-shadow),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  z-index: 9999;
+  z-index: 10001;
   animation: dockSlideUp 0.6s var(--ease-out);
 }
 
@@ -86,8 +86,8 @@ body.light-theme {
 }
 
 .dock-item:hover .dock-item-inner {
-  background: var(--primary);
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
+  background: var(--surface);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
 .dock-item:hover .dock-item-inner::before {
@@ -95,7 +95,10 @@ body.light-theme {
 }
 
 .dock-item-icon {
-  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   transition: transform var(--duration-normal) var(--ease-spring);
 }
@@ -112,9 +115,8 @@ body.light-theme {
   transform: translateX(-50%);
   width: 4px;
   height: 4px;
-  background: var(--primary);
+  background: var(--text-primary);
   border-radius: var(--radius-full);
-  box-shadow: 0 0 8px var(--primary);
 }
 
 /* Dock tooltip */
@@ -164,21 +166,56 @@ body.light-theme {
 /* Responsive */
 @media (max-width: 768px) {
   .dock {
-    padding: 8px 16px;
+    padding: 8px 12px;
+    bottom: max(var(--spacing-md), env(safe-area-inset-bottom, 0px));
+    gap: 4px;
+    max-width: calc(100vw - 24px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  .dock::-webkit-scrollbar {
+    display: none;
   }
   
   .dock-item {
     width: 48px;
     height: 48px;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+  
+  .dock-item:hover {
+    transform: none;
+  }
+  
+  .dock-item-inner {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .dock-item-icon {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dock {
+    padding: 6px 10px;
+    bottom: max(8px, env(safe-area-inset-bottom, 0px));
+  }
+  
+  .dock-item {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
   }
   
   .dock-item-inner {
     width: 40px;
     height: 40px;
-  }
-  
-  .dock-item-icon {
-    font-size: 22px;
   }
 }
 

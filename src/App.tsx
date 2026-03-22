@@ -3,6 +3,7 @@ import BootAnimation from './components/Boot/BootAnimation';
 import Desktop from './components/Desktop/Desktop';
 import Dock from './components/Dock/Dock';
 import ThemeToggle from './components/ThemeToggle/ThemeToggle';
+import Snow from './components/Snow/Snow';
 
 function App() {
   const [isBooting, setIsBooting] = useState(true);
@@ -21,9 +22,13 @@ function App() {
   };
 
   const handleOpenWindow = (windowId: string) => {
-    if (openWindows.indexOf(windowId) === -1) {
-      setOpenWindows([...openWindows, windowId]);
-    }
+    setOpenWindows(prev => {
+      if (prev.indexOf(windowId) === -1) {
+        return [...prev, windowId];
+      }
+      // Bring to front: move to end of array
+      return [...prev.filter(id => id !== windowId), windowId];
+    });
   };
 
   const handleCloseWindow = (windowId: string) => {
@@ -46,6 +51,7 @@ function App() {
             onOpenWindow={handleOpenWindow}
             onCloseWindow={handleCloseWindow}
           />
+          <Snow />
           <Dock 
             openWindows={openWindows}
             onOpenWindow={handleOpenWindow}

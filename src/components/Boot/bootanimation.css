@@ -1,22 +1,21 @@
 :root {
-  --bg: #0b1220;
-  --fg: #cfe8ff;
-  --accent: #6ee7b7;
+  --bg: var(--bg-dark);
+  --fg: var(--text-primary);
+  --accent: var(--text-muted);
   --muted: rgba(255,255,255,0.12);
 }
 
-/* dark/light theme override (App may toggle .light-theme on body) */
 body.light-theme {
-  --bg: #f7fbff;
-  --fg: #0b1220;
-  --accent: #0ea5a0;
-  --muted: rgba(11,18,32,0.06);
+  --bg: var(--bg-dark);
+  --fg: var(--text-primary);
+  --accent: var(--text-muted);
+  --muted: rgba(0,0,0,0.08);
 }
 
 .boot-screen {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #0a0f1e 0%, #1a1f3a 100%);
+  background: var(--bg-dark);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,51 +56,50 @@ body.light-theme {
 .boot-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: var(--surface);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
+  box-shadow: var(--glass-shadow);
   animation: pulse 2s ease-in-out infinite;
+  color: var(--fg);
 }
 
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
+    opacity: 1;
   }
   50% {
     transform: scale(1.05);
-    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.6);
+    opacity: 0.9;
   }
 }
 
-.boot-icon::before {
-  content: '⚡';
-  font-size: 24px;
+.boot-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .boot-title {
   font-size: 32px;
   font-weight: 700;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
 }
 
 .boot-message {
   font-size: 14px;
-  color: #d1d5db;
+  color: var(--text-secondary);
   margin-bottom: 32px;
-  font-family: 'Monaco', 'Menlo', monospace;
+  font-family: var(--font-mono);
 }
 
 .boot-progress {
   width: 280px;
   height: 6px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--surface);
   border-radius: 999px;
   overflow: hidden;
   margin: 0 auto;
@@ -111,9 +109,8 @@ body.light-theme {
 .boot-progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+  background: var(--text-secondary);
   border-radius: 999px;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
   animation: progressLoad 1.8s ease-in-out forwards;
   position: relative;
 }
