@@ -126,7 +126,7 @@ const Terminal: React.FC = () => {
 
       case 'whoami':
         response = [
-          { type: 'output', content: 'alex' },
+          { type: 'output', content: 'I am Alex!' },
         ];
         break;
 
