@@ -60,7 +60,7 @@ const Terminal: React.FC = () => {
           { type: 'output', content: "with a passion for building things that matter." },
           { type: 'output', content: '' },
           { type: 'output', content: 'Focus areas: Full-Stack, HealthTech, IoT, AI & ML, Blockchain,' },
-          { type: 'output', content: '  Automation & DevOps, Game Development' },
+          { type: 'output', content: 'Automation & DevOps, Game Development' },
           { type: 'output', content: '' },
           { type: 'output', content: 'Beyond the screen: Fitness, Snowboarding, Traveling' },
         ];
