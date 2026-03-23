@@ -72,7 +72,7 @@ const Resume: React.FC = () => {
         {
             degree: "B.Sc. in Computer Science",
             school: "The University Of Western Ontario",
-            period: "Expected Graduation May 2025",
+            period: "Expected Graduation",
             details: "GPA 3.85"
         }
     ];

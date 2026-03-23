@@ -15,6 +15,11 @@
     font-size: 13px;
   }
 
+  /* 16px prevents iOS Safari from zooming on input focus */
+  .terminal-input {
+    font-size: 16px !important;
+  }
+
   .terminal-output {
     padding: 12px;
   }
@@ -27,6 +32,10 @@
 @media (max-width: 480px) {
   .terminal {
     font-size: 12px;
+  }
+
+  .terminal-input {
+    font-size: 16px !important;
   }
 
   .terminal-output {

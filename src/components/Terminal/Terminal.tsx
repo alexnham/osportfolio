@@ -152,6 +152,7 @@ const Terminal: React.FC = () => {
       processCommand(input);
       setInput('');
     }
+    inputRef.current?.blur(); // Unfocus to help zoom reset on mobile
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import BootAnimation from './components/Boot/BootAnimation';
 import Desktop from './components/Desktop/Desktop';
 import Dock from './components/Dock/Dock';
-import ThemeToggle from './components/ThemeToggle/ThemeToggle';
+import TopBar from './components/TopBar/TopBar';
 import Snow from './components/Snow/Snow';
 
 function App() {
@@ -46,6 +46,7 @@ function App() {
       {isBooting && <BootAnimation onComplete={handleBootComplete} />}
       {!isBooting && (
         <>
+          <TopBar isDark={isDarkTheme} onToggleTheme={toggleTheme} />
           <Desktop 
             openWindows={openWindows}
             onOpenWindow={handleOpenWindow}
@@ -56,7 +57,6 @@ function App() {
             openWindows={openWindows}
             onOpenWindow={handleOpenWindow}
           />
-          <ThemeToggle isDark={isDarkTheme} onToggle={toggleTheme} />
         </>
       )}
     </>

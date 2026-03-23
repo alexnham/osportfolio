@@ -10,11 +10,12 @@
   --label-muted: var(--text-muted);
 }
 
-/* Desktop container */
+/* Desktop container - offset for top bar */
 .desktop {
   position: relative;
   width: 100%;
   height: 100vh;
+  padding-top: 32px;
   background: 
     radial-gradient(ellipse 80% 50% at 70% 20%, rgba(115, 115, 115, 0.12) 0%, transparent 50%),
     radial-gradient(ellipse 60% 80% at 20% 80%, rgba(82, 82, 82, 0.1) 0%, transparent 50%),
