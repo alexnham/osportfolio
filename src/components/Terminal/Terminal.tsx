@@ -11,7 +11,7 @@ const Terminal: React.FC = () => {
   const [history, setHistory] = useState<TerminalLine[]>([
     { type: 'output', content: 'AlexOS Terminal v1.0.0' },
     { type: 'output', content: '-------------------------------' },
-    { type: 'output', content: 'Hi, I\'m Alex, nice to meet you!' },
+    { type: 'success', content: '  Hi, I\'m Alex, nice to meet you!' },
     { type: 'output', content: '-------------------------------' },
     { type: 'output', content: 'Type "help" for available commands.' },
     { type: 'output', content: '' },
