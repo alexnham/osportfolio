@@ -75,9 +75,6 @@ const Terminal: React.FC<TerminalProps> = ({ onOpenWindow }) => {
           { type: 'output', content: '  projects      - Open Projects' },
           { type: 'output', content: '  contact       - Open Contact' },
           { type: 'output', content: '  resume        - Open Resume' },
-          { type: 'output', content: '  playground    - Open Playground' },
-          { type: 'output', content: '  labs          - Open Labs' },
-          { type: 'output', content: '  open <app>    - Open an app (e.g. open projects)' },
           { type: 'output', content: '  clear         - Clear the terminal' },
           { type: 'output', content: '  sudo hire me  - Easter egg' },
         ];
