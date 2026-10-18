@@ -59,7 +59,7 @@ const Desktop: React.FC<DesktopProps> = ({ openWindows, onOpenWindow, onCloseWin
             case 'about':
                 return <About />;
             case 'terminal':
-                return <Terminal />;
+                return <Terminal onOpenWindow={onOpenWindow} />;
             default:
                 return (
                     <div style={{ padding: '20px' }}>

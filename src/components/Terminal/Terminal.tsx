@@ -6,7 +6,21 @@ interface TerminalLine {
   content: string;
 }
 
-const Terminal: React.FC = () => {
+interface TerminalProps {
+  onOpenWindow: (windowId: string) => void;
+}
+
+const appCommands: Record<string, { id: string; name: string }> = {
+  about: { id: 'about', name: 'About' },
+  skills: { id: 'resume', name: 'Resume' },
+  resume: { id: 'resume', name: 'Resume' },
+  projects: { id: 'projects', name: 'Projects' },
+  contact: { id: 'contact', name: 'Contact' },
+  playground: { id: 'playground', name: 'Playground' },
+  labs: { id: 'labs', name: 'Labs' },
+};
+
+const Terminal: React.FC<TerminalProps> = ({ onOpenWindow }) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<TerminalLine[]>([
     { type: 'output', content: 'AlexOS Terminal v1.0.0' },
@@ -41,6 +55,14 @@ const Terminal: React.FC = () => {
       return;
     }
 
+    const appCommand = trimmedCmd.replace(/^open\s+/, '');
+    const app = Object.prototype.hasOwnProperty.call(appCommands, appCommand) ? appCommands[appCommand] : undefined;
+    if (app) {
+      setHistory(prev => [...prev, { type: 'success', content: `Opening ${app.name}...` }, { type: 'output', content: '' }]);
+      onOpenWindow(app.id);
+      return;
+    }
+
     let response: TerminalLine[] = [];
 
     switch (trimmedCmd) {
@@ -48,61 +70,16 @@ const Terminal: React.FC = () => {
         response = [
           { type: 'output', content: 'Available commands:' },
           { type: 'output', content: '  help          - Show this help message' },
-          { type: 'output', content: '  about         - Learn about me' },
-          { type: 'output', content: '  skills        - List my skills' },
-          { type: 'output', content: '  projects      - Show my projects' },
-          { type: 'output', content: '  contact       - Get contact information' },
+          { type: 'output', content: '  about         - Open About' },
+          { type: 'output', content: '  skills        - Open Resume' },
+          { type: 'output', content: '  projects      - Open Projects' },
+          { type: 'output', content: '  contact       - Open Contact' },
+          { type: 'output', content: '  resume        - Open Resume' },
+          { type: 'output', content: '  playground    - Open Playground' },
+          { type: 'output', content: '  labs          - Open Labs' },
+          { type: 'output', content: '  open <app>    - Open an app (e.g. open projects)' },
           { type: 'output', content: '  clear         - Clear the terminal' },
           { type: 'output', content: '  sudo hire me  - Easter egg' },
-        ];
-        break;
-
-      case 'about':
-        response = [
-          { type: 'output', content: "Hi, I'm Alex — a Computer Science student at Western University" },
-          { type: 'output', content: "with a passion for building things that matter." },
-          { type: 'output', content: '' },
-          { type: 'output', content: 'Focus areas: Full-Stack, HealthTech, IoT, AI & ML, Blockchain,' },
-          { type: 'output', content: 'Automation & DevOps, Game Development' },
-          { type: 'output', content: '' },
-          { type: 'output', content: 'Beyond the screen: Fitness, Snowboarding, Traveling' },
-        ];
-        break;
-
-      case 'skills':
-        response = [
-          { type: 'output', content: 'Languages:' },
-          { type: 'success', content: '  Java, Python, C, C++, C#, JavaScript, TypeScript, Bash, Rust' },
-          { type: 'output', content: '' },
-          { type: 'output', content: 'Frameworks & Libraries:' },
-          { type: 'success', content: '  React, Node.js, Express, Flask, Django, .NET, React Native, Flutter, Tailwind' },
-          { type: 'output', content: '' },
-          { type: 'output', content: 'Databases:' },
-          { type: 'success', content: '  MySQL, MongoDB, PostgreSQL, Microsoft SQL Server' },
-          { type: 'output', content: '' },
-          { type: 'output', content: 'Cloud & DevOps:' },
-          { type: 'success', content: '  Azure, Docker, GitHub Actions, CI/CD, REST APIs, Postman, Nginx' },
-          { type: 'output', content: '' },
-          { type: 'output', content: 'Tools & Additional:' },
-          { type: 'success', content: '  Git, VS Code, Figma, Jira, Agile, Automation, Team Collaboration' },
-        ];
-        break;
-
-      case 'projects':
-        response = [
-          { type: 'output', content: 'Featured Projects:' },
-          { type: 'output', content: '1. Summarizer - AI-powered text summarization tool [AI, NLP]' },
-          { type: 'output', content: '2. ProjManage - Project tracking and display [Full Stack]' },
-          { type: 'output', content: '3. Elemental Flip - RPG dungeon crawler [Game]' },
-        ];
-        break;
-
-      case 'contact':
-        response = [
-          { type: 'output', content: 'Contact Information:' },
-          { type: 'output', content: 'Email: alexnham11@gmail.com' },
-          { type: 'output', content: 'LinkedIn: linkedin.com/in/alex-nham' },
-          { type: 'output', content: 'GitHub: github.com/alexnham' },
         ];
         break;
 

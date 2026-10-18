@@ -109,6 +109,20 @@
   white-space: nowrap;
 }
 
+.finder-path-root {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.finder-path-root:hover {
+  text-decoration: underline;
+}
+
 /* Body: sidebar + content */
 .finder-body {
   display: flex;
