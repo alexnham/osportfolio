@@ -112,9 +112,6 @@ body.light-theme .polaroid {
     transform: scale(0.6) rotate(var(--r, 0deg)) !important;
     width: 70px;
   }
-  .polaroid:nth-child(n+5) {
-    display: none;
-  }
 }
 
 /* Zoomed polaroid in portal - scale down on mobile */
@@ -125,9 +122,6 @@ body.light-theme .polaroid {
 }
 
 @media (max-width: 480px) {
-  .polaroid:nth-child(n+4) {
-    display: none;
-  }
   
   .polaroid-backdrop .polaroid--zoomed {
     width: min(240px, 90vw) !important;
